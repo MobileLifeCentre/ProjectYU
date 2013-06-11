@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+    <TextView 
+    android:id = "@+id/Welcometext"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="@string/hello"
+    />
+    <Button android:text="Connect" 
+    android:id="@+id/ButtonConnect" 
+    android:layout_width="wrap_content" 
+    android:layout_below="@+id/Welcometext"
+    android:layout_height="wrap_content"></Button>
+        
+	<Button android:text="Disconnect" 
+	android:id="@+id/ButtonDisconnect"
+	android:layout_toRightOf="@id/ButtonConnect"
+     android:layout_alignTop="@id/ButtonConnect" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content"></Button>
+	
+	<EditText 
+	android:id="@+id/labelHeartRate" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content" 
+	android:text="000" 
+	android:layout_below="@+id/ButtonConnect" 
+	android:layout_alignParentRight="true"></EditText>
+	
+	<TextView 
+    android:id = "@+id/HRTextBox"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/ButtonConnect" 
+    android:text="Heart Rate"
+    android:textSize = "20sp"
+    />
+<TextView 
+    android:id = "@+id/RespirationRate"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/labelHeartRate" 
+    android:text="Respiration Rate"
+    android:textSize = "20sp"
+    />
+<EditText 
+	android:id="@+id/labelRespRate" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content" 
+	android:text="000" 
+	android:layout_below="@+id/labelHeartRate" 
+	android:layout_alignParentRight="true"></EditText>
+	
+  <TextView 
+    android:id = "@+id/SkinTemperature"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/labelRespRate" 
+    android:text="Skin Temperature"
+    android:textSize = "20sp"
+    />
+    <EditText 
+	android:id="@+id/labelSkinTemp" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content" 
+	android:text="000" 
+	android:layout_below="@+id/labelRespRate" 
+	android:layout_alignParentRight="true"></EditText>
+    
+    <TextView 
+    android:id = "@+id/Posture"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/labelSkinTemp" 
+    android:text="Posture"
+    android:textSize = "20sp"
+    />
+    
+    <EditText 
+	android:id="@+id/labelPosture" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content" 
+	android:text="000" 
+	android:layout_below="@+id/labelSkinTemp" 
+	android:layout_alignParentRight="true"></EditText>
+	
+	<TextView 
+    android:id = "@+id/PeakAcc"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/labelPosture" 
+    android:text="Peak Acceleration"
+    android:textSize = "20sp"
+    />
+    
+    <EditText 
+	android:id="@+id/labelPeakAcc" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content" 
+	android:text="000" 
+	android:layout_below="@+id/labelPosture" 
+	android:layout_alignParentRight="true"></EditText>
+	
+    <TextView 
+    android:id = "@+id/StatusTextBox"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/labelPeakAcc" 
+    android:text="Status Message"
+    android:textSize = "20sp"
+    />
+    <EditText 
+	android:id="@+id/labelStatusMsg" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content" 
+	android:text="Status Message Box" 
+	android:layout_below="@+id/StatusTextBox" 
+	android:layout_alignParentLeft="true"></EditText>
+	
+    
+    
+  
+     
+</RelativeLayout>
