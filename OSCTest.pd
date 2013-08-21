@@ -1,0 +1,13 @@
+#N canvas 364 235 630 576 10;
+#X msg 352 -140 disconnect;
+#X obj 342 -41 sendOSC;
+#X obj 102 -51 print OSCmsg;
+#X msg 377 -86 send /controller/HEART_RATE 22;
+#X msg 342 -167 connect 192.168.43.3 7778;
+#X obj 102 -95 dumpOSC 7772;
+#X text 338 -191 Port of the YU app;
+#X text 102 -116 Port of the app in the phone;
+#X connect 0 0 1 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
+#X connect 5 0 2 0;

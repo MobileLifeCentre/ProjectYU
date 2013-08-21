@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This software is subject to the license described in the License.txt file 
+included with this software distribution. You may not use this file except in compliance 
+with this license.
+
+Copyright (c) Dynastream Innovations Inc. 2013
+All rights reserved.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ListView android:layout_height="wrap_content"
+        android:id="@android:id/list"
+        android:layout_width="fill_parent" />
+
+</LinearLayout>

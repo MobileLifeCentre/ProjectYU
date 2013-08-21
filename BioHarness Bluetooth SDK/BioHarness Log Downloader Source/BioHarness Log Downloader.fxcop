@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FxCopProject Version="1.36" Name="My FxCop Project">
+ <ProjectOptions>
+  <SharedProject>True</SharedProject>
+  <Stylesheet Apply="False">c:\program files\microsoft fxcop 1.36\Xml\FxCopReport.xsl</Stylesheet>
+  <SaveMessages>
+   <Project Status="Active, Excluded" NewOnly="False" />
+   <Report Status="Active" NewOnly="False" />
+  </SaveMessages>
+  <ProjectFile Compress="True" DefaultTargetCheck="True" DefaultRuleCheck="True" SaveByRuleGroup="" Deterministic="True" />
+  <EnableMultithreadedLoad>True</EnableMultithreadedLoad>
+  <EnableMultithreadedAnalysis>True</EnableMultithreadedAnalysis>
+  <SourceLookup>True</SourceLookup>
+  <AnalysisExceptionsThreshold>10</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>1</RuleExceptionsThreshold>
+  <Spelling Locale="en-US" />
+  <OverrideRuleVisibilities>False</OverrideRuleVisibilities>
+  <CustomDictionaries SearchFxCopDir="True" SearchUserProfile="True" SearchProjectDir="True" />
+  <SearchGlobalAssemblyCache>False</SearchGlobalAssemblyCache>
+  <DeadlockDetectionTimeout>120</DeadlockDetectionTimeout>
+  <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
+ </ProjectOptions>
+ <Targets>
+  <Target Name="$(ProjectDir)/BioHarness Log Downloader/bin/Release/BioHarness Log Downloader.exe" Analyze="True" AnalyzeAllChildren="True" />
+ </Targets>
+ <Rules>
+  <RuleFiles>
+   <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\InteroperabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\MobilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PortabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="True" AllRulesEnabled="True" />
+  </RuleFiles>
+  <Groups />
+  <Settings />
+ </Rules>
+ <FxCopReport Version="1.36">
+  <Targets>
+   <Target Name="$(ProjectDir)/BioHarness Log Downloader/bin/Release/BioHarness Log Downloader.exe">
+    <Modules>
+     <Module Name="bioharness log downloader.exe">
+      <Namespaces>
+       <Namespace Name="BioHarnessLogDownloader">
+        <Types>
+         <Type Name="DownloadForm">
+          <Members>
+           <Member Name="#DownloadLogData(System.String,Zephyr.Logging.Session)">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'DownloadForm.DownloadLogData(string, Session)'</Item>
+               <Item>'Exception'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#InterpretLogs(Zephyr.Logging.Session,System.Byte[])">
+            <Messages>
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'DownloadForm.InterpretLogs(Session, byte[])'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SaveLog()">
+            <Messages>
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-06-11 07:11:18Z">
+              <Issue>
+               <Item>'DownloadForm.SaveLog()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Zephyr">
+        <Types>
+         <Type Name="Contract">
+          <Members>
+           <Member Name="#ThrowIfInvalidEnumValue`1(System.Object)">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'Contract.ThrowIfInvalidEnumValue&lt;T&gt;(object)'</Item>
+               <Item>'T'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ThrowIfNotType`1(System.Object)">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'Contract.ThrowIfNotType&lt;T&gt;(object)'</Item>
+               <Item>'T'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ThrowIfNotType`1(System.Object,System.String)">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'Contract.ThrowIfNotType&lt;T&gt;(object, string)'</Item>
+               <Item>'T'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Serialization">
+          <Messages>
+           <Message TypeName="TypeNamesShouldNotMatchNamespaces" Category="Microsoft.Naming" CheckId="CA1724" Created="2010-06-11 04:10:01Z">
+            <Issue Name="System">
+             <Item>'Serialization'</Item>
+             <Item>System.ComponentModel.Design.Serialization</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="#XmlSerialize(System.Object)">
+            <Messages>
+             <Message Id="obj" TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720" Created="2010-06-11 04:10:01Z">
+              <Issue Name="LanguageIndependentMemberParameter">
+               <Item>'Serialization.XmlSerialize(object)'</Item>
+               <Item>obj</Item>
+               <Item>'obj'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Zephyr.IO">
+        <Types>
+         <Type Name="CRC8">
+          <Messages>
+           <Message Id="CRC" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2010-06-11 04:10:01Z">
+            <Issue Name="Type">
+             <Item>CRC</Item>
+             <Item>'CRC8'</Item>
+             <Item>Crc</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="#.ctor(System.Byte)">
+            <Messages>
+             <Message Id="crc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-06-11 04:10:01Z">
+              <Issue Name="MemberParameter">
+               <Item>'CRC8.CRC8(byte)'</Item>
+               <Item>crc</Item>
+               <Item>'crc8Poly'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ICRC`1">
+          <Messages>
+           <Message Id="CRC" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2010-06-11 04:10:01Z">
+            <Issue Name="Type">
+             <Item>CRC</Item>
+             <Item>'ICRC&lt;T&gt;'</Item>
+             <Item>Crc</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Zephyr.IO.Ports">
+        <Types>
+         <Type Name="SerialPortDevice">
+          <Members>
+           <Member Name="#GetAvailablePorts()">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'SerialPortDevice.GetAvailablePorts()'</Item>
+               <Item>'object'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Zephyr.Win32.Registry.RegCloseKey(System.IntPtr)" TypeName="DoNotIgnoreMethodResults" Category="Microsoft.Usage" CheckId="CA1806" Created="2010-06-11 04:10:01Z">
+              <Issue Name="HResultOrErrorCode">
+               <Item>'SerialPortDevice.GetAvailablePorts()'</Item>
+               <Item>'Registry.RegCloseKey(IntPtr)'</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Created="2010-06-11 04:10:01Z">
+              <Issue Name="TooGeneric">
+               <Item>'SerialPortDevice.GetAvailablePorts()'</Item>
+               <Item>'Exception'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.IndexOf(System.String)" TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'SerialPortDevice.GetAvailablePorts()'</Item>
+               <Item>'string.IndexOf(string)'</Item>
+               <Item>'string.IndexOf(string, StringComparison)'</Item>
+              </Issue>
+              <Issue>
+               <Item>'SerialPortDevice.GetAvailablePorts()'</Item>
+               <Item>'string.IndexOf(string)'</Item>
+               <Item>'string.IndexOf(string, StringComparison)'</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Created="2010-06-11 04:10:01Z">
+              <Issue Certainty="50">
+               <Item>'SerialPortDevice.GetAvailablePorts()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#OnDeviceChange(System.Windows.Forms.Message)">
+            <Messages>
+             <Message Id="m" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-06-11 04:10:01Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'SerialPortDevice.OnDeviceChange(Message)'</Item>
+               <Item>'m'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="SerialPortInfo">
+          <Members>
+           <Member Name="#DevicePid">
+            <Messages>
+             <Message Id="Pid" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-06-11 04:10:01Z">
+              <Issue Name="Member">
+               <Item>Pid</Item>
+               <Item>'SerialPortInfo.DevicePid'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#DeviceVid">
+            <Messages>
+             <Message Id="Vid" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-06-11 04:10:01Z">
+              <Issue Name="Member">
+               <Item>Vid</Item>
+               <Item>'SerialPortInfo.DeviceVid'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="SerialPortListChangedEventArgs">
+          <Members>
+           <Member Name="#.ctor(System.String,Zephyr.IO.Ports.SerialPortListAction)">
+            <Messages>
+             <Message Id="evt" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-06-11 04:10:01Z">
+              <Issue Name="MemberParameter">
+               <Item>'SerialPortListChangedEventArgs.SerialPortListChangedEventArgs(string, SerialPortListAction)'</Item>
+               <Item>evt</Item>
+               <Item>'evt'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Zephyr.Logging">
+        <Types>
+         <Type Name="SessionDirectory">
+          <Messages>
+           <Message TypeName="OverrideEqualsAndOperatorEqualsOnValueTypes" Category="Microsoft.Performance" CheckId="CA1815" Created="2010-06-11 04:10:01Z">
+            <Issue Name="Equals">
+             <Item>'SessionDirectory'</Item>
+            </Issue>
+            <Issue Name="op_Equality">
+             <Item>'SessionDirectory'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Zephyr.Threading">
+        <Types>
+         <Type Name="Future`1">
+          <Members>
+           <Member Name="#AddCompletedCallback(System.Action`1&lt;Zephyr.Threading.Future`1&lt;!0&gt;&gt;)">
+            <Messages>
+             <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'Future&lt;T&gt;.AddCompletedCallback(Action&lt;Future&lt;T&gt;&gt;)'</Item>
+               <Item>'Action&lt;Future&lt;T&gt;&gt;'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Create(System.Func`1&lt;!0&gt;)">
+            <Messages>
+             <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'Future&lt;T&gt;.Create(Func&lt;T&gt;)'</Item>
+               <Item>'Future&lt;T&gt;'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Create`1(System.Func`2&lt;!!0,!0&gt;,!!0)">
+            <Messages>
+             <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'Future&lt;T&gt;.Create&lt;TArg&gt;(Func&lt;TArg, T&gt;, TArg)'</Item>
+               <Item>'Future&lt;T&gt;'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Create`2(System.Func`3&lt;!!0,!!1,!0&gt;,!!0,!!1)">
+            <Messages>
+             <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'Future&lt;T&gt;.Create&lt;TArg1, TArg2&gt;(Func&lt;TArg1, TArg2, T&gt;, TArg1, TArg2)'</Item>
+               <Item>'Future&lt;T&gt;'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CreateWithoutRunning(System.Func`1&lt;!0&gt;)">
+            <Messages>
+             <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'Future&lt;T&gt;.CreateWithoutRunning(Func&lt;T&gt;)'</Item>
+               <Item>'Future&lt;T&gt;'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CreateWithoutRunning`1(System.Func`2&lt;!!0,!0&gt;,!!0)">
+            <Messages>
+             <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'Future&lt;T&gt;.CreateWithoutRunning&lt;TArg&gt;(Func&lt;TArg, T&gt;, TArg)'</Item>
+               <Item>'Future&lt;T&gt;'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="FutureBase">
+          <Members>
+           <Member Name="#Error">
+            <Accessors>
+             <Accessor Name="#get_Error()">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2010-06-11 04:10:01Z">
+                <Issue>
+                 <Item>'FutureBase.Error.get()'</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+           <Member Name="#RunFutureWrapper()">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'FutureBase.RunFutureWrapper()'</Item>
+               <Item>'Exception'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Zephyr.Win32">
+        <Types>
+         <Type Name="Registry">
+          <Members>
+           <Member Name="#NtQueryKey(System.IntPtr,System.Int32,System.IntPtr,System.UInt32,System.UInt32&amp;)">
+            <Messages>
+             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'Registry.NtQueryKey(IntPtr, int, IntPtr, uint, ref uint)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#RegCloseKey(System.IntPtr)">
+            <Messages>
+             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'Registry.RegCloseKey(IntPtr)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#RegQueryValueEx(System.IntPtr,System.String,System.UInt32,Zephyr.Win32.RegistryType&amp;,System.Text.StringBuilder,System.UInt32&amp;)">
+            <Messages>
+             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'Registry.RegQueryValueEx(IntPtr, string, uint, ref RegistryType, StringBuilder, ref uint)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="2" TypeName="PInvokeDeclarationsShouldBePortable" Category="Microsoft.Portability" CheckId="CA1901" Created="2010-06-11 04:10:01Z" FixCategory="NonBreaking">
+              <Issue Name="Parameter">
+               <Item>'Reserved'</Item>
+               <Item>'Registry.RegQueryValueEx(IntPtr, string, uint, ref RegistryType, StringBuilder, ref uint)'</Item>
+               <Item>4</Item>
+               <Item>64-bit</Item>
+               <Item>8</Item>
+               <Item>'uint'</Item>
+              </Issue>
+             </Message>
+             <Message Id="1" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Created="2010-06-11 04:10:01Z">
+              <Issue Name="ParameterImplicitAnsi">
+               <Item>'ValueName'</Item>
+              </Issue>
+             </Message>
+             <Message Id="4" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Created="2010-06-11 04:10:01Z">
+              <Issue Name="ParameterImplicitAnsi">
+               <Item>'Data'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="SetupDi">
+          <Members>
+           <Member Name="#SetupDiDestroyDeviceInfoList(System.IntPtr)">
+            <Messages>
+             <Message TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414" Created="2010-06-11 04:10:01Z">
+              <Issue Name="Return">
+               <Item>'SetupDi.SetupDiDestroyDeviceInfoList(IntPtr)'</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'SetupDi.SetupDiDestroyDeviceInfoList(IntPtr)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetupDiEnumDeviceInfo(System.IntPtr,System.UInt32,Zephyr.Win32.SP_DEVINFO_DATA)">
+            <Messages>
+             <Message TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414" Created="2010-06-11 04:10:01Z">
+              <Issue Name="Return">
+               <Item>'SetupDi.SetupDiEnumDeviceInfo(IntPtr, uint, SP_DEVINFO_DATA)'</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'SetupDi.SetupDiEnumDeviceInfo(IntPtr, uint, SP_DEVINFO_DATA)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetupDiGetClassDevs(System.Guid&amp;,System.String,System.IntPtr,Zephyr.Win32.SetupDIGetClassDevsFlags)">
+            <Messages>
+             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'SetupDi.SetupDiGetClassDevs(ref Guid, string, IntPtr, SetupDIGetClassDevsFlags)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="1" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Created="2010-06-11 04:10:01Z">
+              <Issue Name="ParameterImplicitAnsi">
+               <Item>'Enumerator'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetupDiGetDeviceRegistryProperty(System.IntPtr,Zephyr.Win32.SP_DEVINFO_DATA,Zephyr.Win32.DeviceRegistryProperty,Zephyr.Win32.RegistryType&amp;,System.Text.StringBuilder,System.UInt32,System.UInt32&amp;)">
+            <Messages>
+             <Message TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414" Created="2010-06-11 04:10:01Z">
+              <Issue Name="Return">
+               <Item>'SetupDi.SetupDiGetDeviceRegistryProperty(IntPtr, SP_DEVINFO_DATA, DeviceRegistryProperty, ref RegistryType, StringBuilder, uint, ref uint)'</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'SetupDi.SetupDiGetDeviceRegistryProperty(IntPtr, SP_DEVINFO_DATA, DeviceRegistryProperty, ref RegistryType, StringBuilder, uint, ref uint)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="4" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Created="2010-06-11 04:10:01Z">
+              <Issue Name="ParameterImplicitAnsi">
+               <Item>'PropertyBuffer'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetupDiOpenDevRegKey(System.IntPtr,Zephyr.Win32.SP_DEVINFO_DATA,Zephyr.Win32.SetupDiOpenDevRegKeyScopeFlags,System.UInt32,Zephyr.Win32.SetupDiOpenDevRegKeyKeyTypeFlags,Zephyr.Win32.REGSAM)">
+            <Messages>
+             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-06-11 04:10:01Z">
+              <Issue>
+               <Item>'SetupDi.SetupDiOpenDevRegKey(IntPtr, SP_DEVINFO_DATA, SetupDiOpenDevRegKeyScopeFlags, uint, SetupDiOpenDevRegKeyKeyTypeFlags, REGSAM)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
+  <Rules>
+   <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
+    <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
+    <Resolution Name="Default">Modify {0} to catch a more specific exception than {1} or rethrow the exception.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000">
+    <Resolution Name="Default">Remove {0} from {1} or make it an instance member.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotIgnoreMethodResults" Category="Microsoft.Usage" CheckId="CA1806">
+    <Resolution Name="HResultOrErrorCode">{0} calls {1} but does not use the HRESULT or error code that the method returns. This could lead to unexpected behavior in error conditions or low-resource situations. Use the result in a conditional statement, assign the result to a variable, or pass it as an argument to another method.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006">
+    <Resolution Name="Default">Consider a design where {0} doesn't nest generic type {1}.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201">
+    <Resolution Name="TooGeneric">{0} creates an exception of type {1}, an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Resolution>
+   </Rule>
+   <Rule TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004">
+    <Resolution Name="Default">Consider a design where {0} doesn't require explicit type parameter {1} in any call to it.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
+    <Resolution Name="Type">Correct the casing of '{0}' in type name {1} by changing it to '{2}'.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+    <Resolution Name="Member">Correct the spelling of '{0}' in member name {1} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+    <Resolution Name="MemberParameter">In method {0}, correct the spelling of '{1}' in parameter name {2} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+    <Resolution Name="MemberParameterMoreMeaningfulName">In method {0}, consider providing a more meaningful name than parameter name {1}.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720">
+    <Resolution Name="LanguageIndependentMemberParameter">In member {0}, consider replacing the data type identifier '{1}' in parameter name {2} with a more generic term, such as 'value'.</Resolution>
+   </Rule>
+   <Rule TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414">
+    <Resolution Name="Return">Add the MarshalAsAttribute to the return type of P/Invoke {0}. If the corresponding unmanaged return type is a 4-byte Win32 'BOOL', use MarshalAs(UnmanagedType.Bool). For a 1-byte C++ 'bool', use MarshalAs(UnmanagedType.U1).</Resolution>
+   </Rule>
+   <Rule TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060">
+    <Resolution Name="Default">Because it is a P/Invoke method, {0} should be defined in a class named NativeMethods, SafeNativeMethods, or UnsafeNativeMethods.</Resolution>
+   </Rule>
+   <Rule TypeName="OverrideEqualsAndOperatorEqualsOnValueTypes" Category="Microsoft.Performance" CheckId="CA1815">
+    <Resolution Name="Equals">{0} should override Equals.</Resolution>
+    <Resolution Name="op_Equality">{0} should override the equality (==) and inequality (!=) operators.</Resolution>
+   </Rule>
+   <Rule TypeName="PInvokeDeclarationsShouldBePortable" Category="Microsoft.Portability" CheckId="CA1901">
+    <Resolution Name="Parameter">As it is declared in your code, parameter {0} of P/Invoke {1} will be {2} bytes wide on {3} platforms. This is not correct, as the actual native declaration of this API indicates it should be {4} bytes wide on {3} platforms. Consult the MSDN Platform SDK documentation for help determining what data type should be used instead of {5}.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101">
+    <Resolution Name="ParameterImplicitAnsi">To reduce security risk, marshal parameter {0} as Unicode, by setting DllImport.CharSet to CharSet.Unicode, or by explicitly marshaling the parameter as UnmanagedType.LPWStr. If you need to marshal this string as ANSI or system-dependent, specify MarshalAs explicitly, and set BestFitMapping=false; for added security, also set ThrowOnUnmappableChar=true.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300">
+    <Resolution Name="Default">Change {0} to call the MessageBox.Show overload that specifies MessageBoxOptions, and make sure to set MessageBoxOptions.RightAlign and MessageBoxOptions.RtlReading if RightToLeft is set to RightToLeft.Yes on the parent control.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307">
+    <Resolution Name="Default">{0} makes a call to {1} that does not explicitly provide a StringComparison. This should be replaced with a call to {2}.</Resolution>
+   </Rule>
+   <Rule TypeName="TypeNamesShouldNotMatchNamespaces" Category="Microsoft.Naming" CheckId="CA1724">
+    <Resolution Name="System">The type name {0} conflicts in whole or in part with the namespace name '{1}' defined in the .NET Framework. Rename the type to eliminate the conflict.</Resolution>
+   </Rule>
+   <Rule TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024">
+    <Resolution Name="Default">Change {0} to a property if appropriate.</Resolution>
+   </Rule>
+  </Rules>
+ </FxCopReport>
+</FxCopProject>

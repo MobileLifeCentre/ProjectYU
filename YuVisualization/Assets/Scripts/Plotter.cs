@@ -36,6 +36,9 @@ public class Plotter : MonoBehaviour {
 	   public int peak;
 	}
 	
+	public delegate void BreathingListener();
+	public BreathingListener breathingListener; 
+	
 	void Start () {
 		_graph = gameObject.AddComponent<LineRenderer>();	
 		_graph.SetWidth(0.1f,0.1f);
@@ -88,13 +91,13 @@ public class Plotter : MonoBehaviour {
 			_lastProcessed -= extraElements;
 		}
 		
-		//ProcessData();
 		_redraw = true;
 	}
 	
 	private void Update() {
 		if (_redraw) {
 			RenderLine();
+			ProcessData();
 		}
 	}
 	 
@@ -121,14 +124,15 @@ public class Plotter : MonoBehaviour {
 					_data[_lastIndex] = point;
 					_lastPeak = _lastIndex;
 					_numBreaths++;
-					Debug.Log (_lastIndex + " BREATH #" + _numBreaths);	
+					if (breathingListener != null) breathingListener();
+					Debug.Log ("BREATH");
 				}
-				if (prev < 0 && post > 0) {
+				/*if (prev < 0 && post > 0) {
 					PlotPoint point = _data[_lastIndex];
 					point.peak = 100;
 					_lastPeak = _lastIndex;
 					_data[_lastIndex] = point;
-				}
+				}*/
 			}
 			_lastIndex++;
 		}

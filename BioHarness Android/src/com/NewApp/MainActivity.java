@@ -16,9 +16,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.sax.TextElementListener;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,8 +42,13 @@ public class MainActivity extends Activity {
 	private final int PEAK_ACCLERATION = 0x104;
 	private final int BREATHING_RAW = 0x105;
 	//  OSC data
-	private String ownIP;
-	public Communicator caller;
+	private final String IP = "IP";
+	private final String PORT = "PORT";
+	private Communicator _oscCommunicator;
+	private Editor _preferencesEditor;
+	private SharedPreferences _preferences;
+	private EditText _ipEditText;
+	private EditText _portEditText;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,14 +61,20 @@ public class MainActivity extends Activity {
         // Registering the BTBondReceiver in the application that the status of the receiver has changed to Paired
         IntentFilter filter2 = new IntentFilter("android.bluetooth.device.action.BOND_STATE_CHANGED");
        this.getApplicationContext().registerReceiver(new BTBondReceiver(), filter2);
-        
-       // We get the OSC communicator
-       // TO-DO You could either set the host as a broadcast IP address
-       // or as a parameter in the GUI
-       caller = ((Communicator)getApplicationContext());				
-       caller.setHost("192.168.43.213");
-       caller.setPortout("7774");
-       caller.connect();
+
+       // OSC related data
+       _ipEditText = (EditText) findViewById(R.id.IP);
+       _portEditText = (EditText) findViewById(R.id.Port);
+       
+       _preferences = this.getPreferences(Context.MODE_PRIVATE);
+       _preferencesEditor = _preferences.edit();
+       
+       _ipEditText.setText(_preferences.getString(IP, "192.168.43.213"));
+       _portEditText.setText(_preferences.getString(PORT, "7780"));
+       
+       _oscCommunicator = ((Communicator)getApplicationContext());
+    
+       
        
       //Obtaining the handle to act on the CONNECT button
         TextView tv = (TextView) findViewById(R.id.labelStatusMsg);
@@ -72,6 +86,17 @@ public class MainActivity extends Activity {
         {
         	btnConnect.setOnClickListener(new OnClickListener() {
         		public void onClick(View v) {
+        			// We set the IP of the OSC communicator
+        			String ip = _ipEditText.getText().toString();
+        			String port = _portEditText.getText().toString();
+        			
+        			_oscCommunicator.setHost(ip);
+    		        _oscCommunicator.setPortout(port);
+    		        _oscCommunicator.connect();
+    		        
+    		        _preferencesEditor.putString(IP, ip);
+    		        _preferencesEditor.putString(PORT, port);
+    		        
         			String BhMacID = "00:07:80:9D:8A:E8";
         			adapter = BluetoothAdapter.getDefaultAdapter();
         			
@@ -146,7 +171,9 @@ public class MainActivity extends Activity {
 					_bt.removeConnectedEventListener(_NConnListener);
 					/*Close the communication with the device & throw an exception if failure*/
 					_bt.Close();
-				
+					
+					// we disconnect OSC
+					_oscCommunicator.close();
 				}
         	});
         }
@@ -159,30 +186,6 @@ public class MainActivity extends Activity {
  		Toast.makeText(context, anErrorMessage, duration).show();
  	}
     
-    private void SetIp() {
-    	WifiManager wifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
-		// make sure wi-fi is enabled
-		if(wifiManager.isWifiEnabled()){
-			WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-			// and that we are connected
-			if(wifiInfo.getNetworkId() == -1){
-				showToast("Please make sure you are connected to the same network as the host.");
-			}else{
-				ownIP = intToIp(wifiInfo.getIpAddress());
-			}
-		}else{
-			showToast("Please enable Wifi to continue.");
-		}
-    }
-    
-    
-    // adapted from http://teneo.wordpress.com/2008/12/23/java-ip-address-to-integer-and-back/  
- 	public static String intToIp(int i) {
- 		return (i & 0xFF) + "." +
- 		((i >> 8 )   & 0xFF) + "." +
- 		((i >>  16 ) & 0xFF) + "." +
- 		( (i >> 24 ) & 0xFF);
- 	}
     
     private class BTBondReceiver extends BroadcastReceiver {
 		@Override
@@ -233,14 +236,14 @@ public class MainActivity extends Activity {
     			tv = (EditText)findViewById(R.id.labelHeartRate);
     			System.out.println("Heart Rate Info is "+ HeartRatetext);
     			if (tv != null)tv.setText(HeartRatetext);
-    			caller.sending("HEART_RATE", HeartRatetext);
+    			_oscCommunicator.sending("HEART_RATE", HeartRatetext);
     		break;
     		
     		case RESPIRATION_RATE:
     			String RespirationRatetext = msg.getData().getString("RespirationRate");
     			tv = (EditText)findViewById(R.id.labelRespRate);
     			if (tv != null)tv.setText(RespirationRatetext);
-    			caller.sending("RESPIRATION_RATE", RespirationRatetext);
+    			_oscCommunicator.sending("RESPIRATION_RATE", RespirationRatetext);
     		
     		break;
     		
@@ -248,14 +251,14 @@ public class MainActivity extends Activity {
     			String SkinTemperaturetext = msg.getData().getString("SkinTemperature");
     			tv = (EditText)findViewById(R.id.labelSkinTemp);
     			if (tv != null)tv.setText(SkinTemperaturetext);
-    			caller.sending("SKIN_TEMPERATURE", SkinTemperaturetext);
+    			_oscCommunicator.sending("SKIN_TEMPERATURE", SkinTemperaturetext);
     		break;
     		
     		case POSTURE:
     			String PostureText = msg.getData().getString("Posture");
     			tv = (EditText)findViewById(R.id.labelPosture);
     			if (tv != null)tv.setText(PostureText);
-    			caller.sending("POSTURE", PostureText);
+    			_oscCommunicator.sending("POSTURE", PostureText);
     		
     		break;
     		
@@ -263,7 +266,7 @@ public class MainActivity extends Activity {
     			String PeakAccText = msg.getData().getString("PeakAcceleration");
     			tv = (EditText)findViewById(R.id.labelPeakAcc);
     			if (tv != null)tv.setText(PeakAccText);
-    			caller.sending("PEAK_ACCLERATION", PeakAccText);
+    			_oscCommunicator.sending("PEAK_ACCLERATION", PeakAccText);
     		break;	
     		
     		case BREATHING_RAW:
@@ -272,7 +275,7 @@ public class MainActivity extends Activity {
     			for (int i = 0; i < breathingRaw.length; ++i) {
     				result += breathingRaw[i] + " ";
     			}
-    			caller.sending("BREATHING_RAW", result);
+    			_oscCommunicator.sending("BREATHING_RAW", result);
 			break;
     		}
     	}

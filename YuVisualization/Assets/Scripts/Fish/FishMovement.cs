@@ -46,6 +46,10 @@ public class FishMovement : MonoBehaviour {
 	
 	public AudioClip[] audios;
 	
+	// Fish effects
+	public ParticleSystem bubbleParticleSystem;
+	public int bubbles = 10;
+	
 	
 	void Start () {
 		// Model bones
@@ -174,10 +178,14 @@ public class FishMovement : MonoBehaviour {
 		}
 	}
 	
+	public void EmitBubbles() {
+		bubbleParticleSystem.Emit(bubbles);	
+	}
+	
 	void OnDrawGizmos() {
 		Gizmos.color = Color.red;
 		foreach (Vector3 pos in path) {
-			Gizmos.DrawSphere(pos,0.5f);	
+			//Gizmos.DrawSphere(pos,0.5f);	
 		}
 	}
 	

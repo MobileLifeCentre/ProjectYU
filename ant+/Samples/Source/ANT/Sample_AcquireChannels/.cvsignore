@@ -1,0 +1,6 @@
+gen
+bin
+libs
+publish
+local.properties
+secure.properties

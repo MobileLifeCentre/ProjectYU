@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 
@@ -16,11 +17,22 @@ public class BiometricInfo : MonoBehaviour {
 	private float _peakAcceleration = 0.0f;
 	private string _info = "EMPTY";
 	private bool _visible = false;
+	private string _breathingSample = "";
 	
 	[HideInInspector]
 	public float heartRate = 0.0f;
 	public delegate void BreathingRawListener(int[] breathing);
 	public BreathingRawListener _breathingRawListener = null;
+	
+	// GSR
+	private List<int> _rawGSR = new List<int>();
+	private int _GSRBufferSize = 20;
+	private int _currentGSR = 0;
+	private float _sumGSR = 0;
+	public int _countGSR = 0;
+	public int _maxGSR = -1;
+	public int _minGSR = 10000; //find int library for maxInt 
+	public float _medianGSR = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -35,6 +47,7 @@ public class BiometricInfo : MonoBehaviour {
 		_handler.SetAddressHandler("/controller/POSTURE", PostureMessage);
 		_handler.SetAddressHandler("/controller/PEAK_ACCLERATION", PeakAccelerationMessage);
 		_handler.SetAddressHandler("/controller/BREATHING_RAW", BreathingRawMessage);
+		_handler.SetAddressHandler("/GSR", GSRMessage);
 	}
 	
 	public void Update() {
@@ -83,6 +96,27 @@ public class BiometricInfo : MonoBehaviour {
  		_peakAcceleration = oscMessageToFloat(oscMessage);
 	}
 	
+	public void GSRMessage(OscMessage oscMessage)
+ 	{
+		int gsrValue = oscMessageToInt(oscMessage);
+ 		_rawGSR.Add(gsrValue);
+		_sumGSR += gsrValue;
+		_countGSR += 1;
+		_medianGSR = _sumGSR/_GSRBufferSize;
+		_maxGSR = (int)Mathf.Max (_maxGSR, gsrValue);
+		_minGSR = (int)Mathf.Min (_minGSR, gsrValue);
+		
+		
+		// We delete values outside the window
+		int extraElements = _rawGSR.Count - _GSRBufferSize;
+		if (extraElements > 0) {
+			for (int i = 0; i < extraElements; ++i) {
+				_sumGSR -= _rawGSR[i];	
+			}
+			_rawGSR.RemoveRange(0, extraElements);
+		}
+	}
+	
 	public void BreathingRawMessage(OscMessage oscMessage)
  	{
 		int[] breathing = oscMessageToIntArray(oscMessage);
@@ -94,15 +128,15 @@ public class BiometricInfo : MonoBehaviour {
 	}
 	
 	private int oscMessageToInt(OscMessage oscMessage) {
-		return int.Parse((string)oscMessage.Values[0]);
+		return int.Parse(oscMessage.Values[0] + "");
 	}
 	
 	private float oscMessageToFloat(OscMessage oscMessage) {
-		return float.Parse((string)oscMessage.Values[0]);
+		return float.Parse(oscMessage.Values[0] +"");
 	}
 	
 	private int[] oscMessageToIntArray(OscMessage oscMessage) {
-		string[] split = ((string)oscMessage.Values[0]).Trim().Split(" "[0]);
+		string[] split = (oscMessage.Values[0] +"").Trim().Split(" "[0]);
 		int[] result = new int[split.Length];
 		
 		for (var i = 0; i < split.Length; ++i) {
@@ -110,6 +144,4 @@ public class BiometricInfo : MonoBehaviour {
 		}
 		return result;
 	}
-	
-	
 }

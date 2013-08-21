@@ -122,9 +122,9 @@ using UnityEngine;
     {
         if (!IsOpen())
             Open();
-        if (!IsOpen())
+        if (!IsOpen()) {	
             return 0;
-
+		}
       IPEndPoint iep = new IPEndPoint(IPAddress.Any, localPort);
       byte[] incoming = Receiver.Receive( ref iep );
       int count = Math.Min(buffer.Length, incoming.Length);

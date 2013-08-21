@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xrml="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <assemblyIdentity name="BioHarness Bluetooth Test Application V2.application" version="2.1.0.10" publicKeyToken="81ab7ab40b73b3ce" language="en-NZ" processorArchitecture="x86" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <description asmv2:publisher="Zephyr" co.v1:suiteName="Bluetooth BioHarness SDK" asmv2:product="BioHarness Bluetooth Test Application V2" asmv2:supportUrl="http://www.zephyr-technology.com/" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <deployment install="true" trustURLParameters="true" co.v1:createDesktopShortcut="true" />
+  <dependency>
+    <dependentAssembly dependencyType="install" codebase="Application Files\BioHarness Bluetooth Test Application V2_2_1_0_10\BioHarness Bluetooth Test Application V2.exe.manifest" size="17329">
+      <assemblyIdentity name="BioHarness Bluetooth Test Application V2.exe" version="2.1.0.10" publicKeyToken="81ab7ab40b73b3ce" language="en-NZ" processorArchitecture="x86" type="win32" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>WaUD1gPwqKnMhZ6bEfLGxsN6IjY=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+<publisherIdentity name="CN=Zephyr Technology Ltd, OU=Digital ID Class 3 - Microsoft Software Validation v2, O=Zephyr Technology Ltd, L=Auckland, S=Auckland, C=NZ" issuerKeyHash="97d06ba82670c8a13f941f082dc4359ba4a11ef2" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>ZKdDBcAucQJEFYoyeeTKiQyMIdw=</DigestValue></Reference></SignedInfo><SignatureValue>RTISrk1rQyZGnWohxWTYZFN9jXM7pH9O9OoqOQJ/SJfhB1Hy1F1obHKx/JKxkUJZ4EJfimhYoRTp8ylGAndMv+OOaSjDVY4bqbU9ZP4U6RoM/QM3n7rDq/wyhnvWS8ShxlYkWFreYtmamz6Dkv3R/rLMqBfx3lmKHKW0KC+mKQk=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>uNmcuMB/X0z5M9KyPL/mppKXU0wOV/wA3IfcLO23cADZE0wAWWQOTdYtaAMRNJ8dVys7otbsjTq3V5VHJ5uOxusAOO8GtacDjCV0Sc2L6DqLe+A2ErLYtLYtdHSRZcCI4FSLlp2QiLn/Akj88vX4U5QZZ0VohINKKO2iV/me9wE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="dc218c0c89cae479328a154402712ec00543a764" Description="" Url=""><as:assemblyIdentity name="BioHarness Bluetooth Test Application V2.application" version="2.1.0.10" publicKeyToken="81ab7ab40b73b3ce" language="en-NZ" processorArchitecture="x86" xmlns="urn:schemas-microsoft-com:asm.v1" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=Zephyr Technology Ltd, OU=Digital ID Class 3 - Microsoft Software Validation v2, O=Zephyr Technology Ltd, L=Auckland, S=Auckland, C=NZ</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>gQkPTn5qQWiGMJv9ji+iZQUZlrw=</DigestValue></Reference></SignedInfo><SignatureValue>PZPOBMehdH21Xxcg/Vf8GX2UXBhjI3vnJ3rf9uMLn7rin8N4G8Db/TN2Y3rrvfE2v81H9QWuy6vRyfI7V6WjoO0FJWwkKfWbEvavHBqWuCkXFl31LmB86SC3kVK3eE7+GBTPEaG9tXEVmi6Qwy39GOpLt5viqwoEBGHhkK5rUoI=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>uNmcuMB/X0z5M9KyPL/mppKXU0wOV/wA3IfcLO23cADZE0wAWWQOTdYtaAMRNJ8dVys7otbsjTq3V5VHJ5uOxusAOO8GtacDjCV0Sc2L6DqLe+A2ErLYtLYtdHSRZcCI4FSLlp2QiLn/Akj88vX4U5QZZ0VohINKKO2iV/me9wE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIE9jCCA96gAwIBAgIQGQLuZPoRMsJvTNVm3JVZFTANBgkqhkiG9w0BAQUFADCBtjELMAkGA1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMR8wHQYDVQQLExZWZXJpU2lnbiBUcnVzdCBOZXR3b3JrMTswOQYDVQQLEzJUZXJtcyBvZiB1c2UgYXQgaHR0cHM6Ly93d3cudmVyaXNpZ24uY29tL3JwYSAoYykwOTEwMC4GA1UEAxMnVmVyaVNpZ24gQ2xhc3MgMyBDb2RlIFNpZ25pbmcgMjAwOS0yIENBMB4XDTA5MDcxNTAwMDAwMFoXDTEyMDcyMDIzNTk1OVowgbMxCzAJBgNVBAYTAk5aMREwDwYDVQQIEwhBdWNrbGFuZDERMA8GA1UEBxMIQXVja2xhbmQxHjAcBgNVBAoUFVplcGh5ciBUZWNobm9sb2d5IEx0ZDE+MDwGA1UECxM1RGlnaXRhbCBJRCBDbGFzcyAzIC0gTWljcm9zb2Z0IFNvZnR3YXJlIFZhbGlkYXRpb24gdjIxHjAcBgNVBAMUFVplcGh5ciBUZWNobm9sb2d5IEx0ZDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAuNmcuMB/X0z5M9KyPL/mppKXU0wOV/wA3IfcLO23cADZE0wAWWQOTdYtaAMRNJ8dVys7otbsjTq3V5VHJ5uOxusAOO8GtacDjCV0Sc2L6DqLe+A2ErLYtLYtdHSRZcCI4FSLlp2QiLn/Akj88vX4U5QZZ0VohINKKO2iV/me9wECAwEAAaOCAYMwggF/MAkGA1UdEwQCMAAwDgYDVR0PAQH/BAQDAgeAMEQGA1UdHwQ9MDswOaA3oDWGM2h0dHA6Ly9jc2MzLTIwMDktMi1jcmwudmVyaXNpZ24uY29tL0NTQzMtMjAwOS0yLmNybDBEBgNVHSAEPTA7MDkGC2CGSAGG+EUBBxcDMCowKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3LnZlcmlzaWduLmNvbS9ycGEwEwYDVR0lBAwwCgYIKwYBBQUHAwMwdQYIKwYBBQUHAQEEaTBnMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC52ZXJpc2lnbi5jb20wPwYIKwYBBQUHMAKGM2h0dHA6Ly9jc2MzLTIwMDktMi1haWEudmVyaXNpZ24uY29tL0NTQzMtMjAwOS0yLmNlcjAfBgNVHSMEGDAWgBSX0GuoJnDIoT+UHwgtxDWbpKEe8jARBglghkgBhvhCAQEEBAMCBBAwFgYKKwYBBAGCNwIBGwQIMAYBAQABAf8wDQYJKoZIhvcNAQEFBQADggEBAHFQ2Gz45x0Xz4sYsW8m0P0eVREftfA5KJ2CxOyH5aVAhK+VP1rYVocGYXwUnxgGUxghBtn/2xLRnBvWQWhIWDNmUBWaupRk64SXxcO95pXuLkJ/4bC7UlpARXZzXaYf9DLR3x9TsRXVOIxJQbnWfryI53UVqLBDoYwTzYLUkqsoNcc3/yMiF2Gn6NhpNVQ9zJ5y9ZXVa9fVtl0J4NXJmPTukte30NCgPyu2vkLBt1kazWVg3mUpdXjlurxi9/uAuezGVnvCLTgGCJgcrVzSkLINQs8uli/tB07rVglhnqeEnE+qfg9g91k7Z/aY0b8NKF0RzJ0AiM02Ky0YeYgaeQw=</X509Certificate><X509Certificate>MIIE/DCCBGWgAwIBAgIQZVIm4bIuGOFZDymFrCLnXDANBgkqhkiG9w0BAQUFADBfMQswCQYDVQQGEwJVUzEXMBUGA1UEChMOVmVyaVNpZ24sIEluYy4xNzA1BgNVBAsTLkNsYXNzIDMgUHVibGljIFByaW1hcnkgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkwHhcNMDkwNTIxMDAwMDAwWhcNMTkwNTIwMjM1OTU5WjCBtjELMAkGA1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMR8wHQYDVQQLExZWZXJpU2lnbiBUcnVzdCBOZXR3b3JrMTswOQYDVQQLEzJUZXJtcyBvZiB1c2UgYXQgaHR0cHM6Ly93d3cudmVyaXNpZ24uY29tL3JwYSAoYykwOTEwMC4GA1UEAxMnVmVyaVNpZ24gQ2xhc3MgMyBDb2RlIFNpZ25pbmcgMjAwOS0yIENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvmcdtGCqEElvVhd8Zslehg3V8ayncYOOi4n4iASJFQa6LYQhleTRnFBM+9IivdrysjU7Ho/DCfv8Ey5av4l8PTslHvbzWHuc9AG1xgq4gM6+J3RhZydNauXsgWFYeaPgFxASFSew4U00fytHIES53mYkZorNT7ofxTjIVJDhcvYZZnVquUlozzh5DaowqNssYEie16oUAamD1ziRMDkTlgM6fEBUtq3gLxuD3KgRUj4Cs9cr/SG2p1yjDwupphBQDjQuTafOyV4l1Iy88258KbwBXfwxh1rVjIVnWIgZoL818OoroyHnkPaD5ajtYHhee2CD/VcLXUENY1Rg1kMh7wIDAQABo4IB2zCCAdcwEgYDVR0TAQH/BAgwBgEB/wIBADBwBgNVHSAEaTBnMGUGC2CGSAGG+EUBBxcDMFYwKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3LnZlcmlzaWduLmNvbS9jcHMwKgYIKwYBBQUHAgIwHhocaHR0cHM6Ly93d3cudmVyaXNpZ24uY29tL3JwYTAOBgNVHQ8BAf8EBAMCAQYwbQYIKwYBBQUHAQwEYTBfoV2gWzBZMFcwVRYJaW1hZ2UvZ2lmMCEwHzAHBgUrDgMCGgQUj+XTGoasjY5rw8+AatRIGCx7GS4wJRYjaHR0cDovL2xvZ28udmVyaXNpZ24uY29tL3ZzbG9nby5naWYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMDMDQGCCsGAQUFBwEBBCgwJjAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AudmVyaXNpZ24uY29tMDEGA1UdHwQqMCgwJqAkoCKGIGh0dHA6Ly9jcmwudmVyaXNpZ24uY29tL3BjYTMuY3JsMCkGA1UdEQQiMCCkHjAcMRowGAYDVQQDExFDbGFzczNDQTIwNDgtMS01NTAdBgNVHQ4EFgQUl9BrqCZwyKE/lB8ILcQ1m6ShHvIwDQYJKoZIhvcNAQEFBQADgYEAiwPA3ZTYQaJhabAVqHjHMMaQPH5C9yS25INzFwR/BBCcoeL6gS/rwMpE53LgULZVECCDbpaS5JpRarQ3MdylLeuMAMcdT+dNMrqF+E6++mdVZfBqvnrKZDgaEBB4RXYx84Z6Aw9gwrNdnfaLZnaCG1nhg+W9SaU4VuXeQXcOWA8=</X509Certificate></X509Data></KeyInfo><Object><as:Timestamp>MIIJcQYJKoZIhvcNAQcCoIIJYjCCCV4CAQExCzAJBgUrDgMCGgUAMIGRBgkqhkiG
+9w0BBwGggYMEgYA9k84Ex6F0fbVfFyD9V/wZfZRcGGMje+cnet/24wufuuKfw3gb
+wNv9M3Zjeuu98Ta/zUf1Ba7Lq9HJ8jtXpaOg7QUlbCQp9ZsS9q8cGpa4KRcWXfUu
+YHzpILeRUrd4Tv4YFM8Rob21cRWaLpDDLf0Y6ku3m+KrCgQEYeGQrmtSgqCCB0Yw
+ggN6MIICYqADAgECAhA4Jdf6+GGvnvSQ5ya11lrVMA0GCSqGSIb3DQEBBQUAMFMx
+CzAJBgNVBAYTAlVTMRcwFQYDVQQKEw5WZXJpU2lnbiwgSW5jLjErMCkGA1UEAxMi
+VmVyaVNpZ24gVGltZSBTdGFtcGluZyBTZXJ2aWNlcyBDQTAeFw0wNzA2MTUwMDAw
+MDBaFw0xMjA2MTQyMzU5NTlaMFwxCzAJBgNVBAYTAlVTMRcwFQYDVQQKEw5WZXJp
+U2lnbiwgSW5jLjE0MDIGA1UEAxMrVmVyaVNpZ24gVGltZSBTdGFtcGluZyBTZXJ2
+aWNlcyBTaWduZXIgLSBHMjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAxLXy
+UhW8iIZgKRZKWy9LkWuHkfM1VFg16tE2XmJNUlE0ccJ7Zh2JyN0qxGoK9jfZmHSR
+9pKusLV2lvGpSmNFRy5rC5JOSyuM7lhKi9QH5Bos+IKqWNnNQvMtwHXejavHjh2a
+bEwIlR7e2+9n4XLCScKeYDzh4r4Wo2N4aRR7rS0CAwEAAaOBxDCBwTA0BggrBgEF
+BQcBAQQoMCYwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLnZlcmlzaWduLmNvbTAM
+BgNVHRMBAf8EAjAAMDMGA1UdHwQsMCowKKAmoCSGImh0dHA6Ly9jcmwudmVyaXNp
+Z24uY29tL3Rzcy1jYS5jcmwwFgYDVR0lAQH/BAwwCgYIKwYBBQUHAwgwDgYDVR0P
+AQH/BAQDAgbAMB4GA1UdEQQXMBWkEzARMQ8wDQYDVQQDEwZUU0ExLTIwDQYJKoZI
+hvcNAQEFBQADggEBAFDFS8gkgN/kDSTC3hqxoQKhpoItDIMVgTcKgg4ssFoXYbXY
+Bf6I2/GRkbNWGkCm65K+ODmwdTZ0OphP5De6mYnKlUIdsLnHoI1X4PrVZARCNU4B
+0TOiF8hNqifH8uGGTAI4TYN4xvxT4OvgBofdpJaeXgyY4qW+v4KFw2Dh360o2Mel
+S2Taxxtbvaw5CNU4IqEziy+Kmuu8ByE/REEJB7VlHCS8SNNEgOuhz8kCtBTPVMcW
+o4Bc+Xk+XXJ9iBeeLEOiylPOfT32Kjq4T5QApW0Kg135XlP0GLNXD3DD+/WtlaAO
+F97EFoBgyQ8rboYE8ev0eCfRBcXuNFteuUky8jMwggPEMIIDLaADAgECAhBHvxmV
+341SRkP3221IDTGkMA0GCSqGSIb3DQEBBQUAMIGLMQswCQYDVQQGEwJaQTEVMBMG
+A1UECBMMV2VzdGVybiBDYXBlMRQwEgYDVQQHEwtEdXJiYW52aWxsZTEPMA0GA1UE
+ChMGVGhhd3RlMR0wGwYDVQQLExRUaGF3dGUgQ2VydGlmaWNhdGlvbjEfMB0GA1UE
+AxMWVGhhd3RlIFRpbWVzdGFtcGluZyBDQTAeFw0wMzEyMDQwMDAwMDBaFw0xMzEy
+MDMyMzU5NTlaMFMxCzAJBgNVBAYTAlVTMRcwFQYDVQQKEw5WZXJpU2lnbiwgSW5j
+LjErMCkGA1UEAxMiVmVyaVNpZ24gVGltZSBTdGFtcGluZyBTZXJ2aWNlcyBDQTCC
+ASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKnKsqTMzSCvCn2JrId18LRO
+8d/BD79nYb2jZBzau/nKM6uEMIlYfozba902ng+/0ex48nemfm88v5OvDbpo9GyU
+yr1SLatIPfW21V1fGwKf+i9rHqT3o5qmGsgC4X9MUuMOYOxAHH65Dd4/x7Tfh71f
+emoxLgOZgROoRyDOMXMNVy3NeDQzlRKZErneaC+q5uPCiowqw4shh2a9g1hXb3W/
+PKomh13KEBU8n4TqVMEKbsT+xUrduQcRlyJ82z4n0R547J8xyfHmIhnbxLNHQ5oa
+X6AekORe9e588X2rYgGP9U0L3tAiVqiVza6Idq7uug3z5E3ZoPtooK4UO7OHwbsC
+AwEAAaOB2zCB2DA0BggrBgEFBQcBAQQoMCYwJAYIKwYBBQUHMAGGGGh0dHA6Ly9v
+Y3NwLnZlcmlzaWduLmNvbTASBgNVHRMBAf8ECDAGAQH/AgEAMEEGA1UdHwQ6MDgw
+NqA0oDKGMGh0dHA6Ly9jcmwudmVyaXNpZ24uY29tL1RoYXd0ZVRpbWVzdGFtcGlu
+Z0NBLmNybDATBgNVHSUEDDAKBggrBgEFBQcDCDAOBgNVHQ8BAf8EBAMCAQYwJAYD
+VR0RBB0wG6QZMBcxFTATBgNVBAMTDFRTQTIwNDgtMS01MzANBgkqhkiG9w0BAQUF
+AAOBgQBKa/nqWMJEHDGJeZkrlr+CrAHWHEzNsIpYbt8IKaNeyMqTE+cEUg3vRycv
+ADiw5MmTTprUImIV9z83IU9wMYDxiziHs+jolwD+z1WWTiTSqSdOeq63YUHzKs7n
+ydle3bsrhT61nbXZ4Vf/vrTFfvXPDJ7wl/4r0ztSGxs4J/c/SjGCAWwwggFoAgEB
+MGcwUzELMAkGA1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMSswKQYD
+VQQDEyJWZXJpU2lnbiBUaW1lIFN0YW1waW5nIFNlcnZpY2VzIENBAhA4Jdf6+GGv
+nvSQ5ya11lrVMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcB
+MBwGCSqGSIb3DQEJBTEPFw0xMTExMjMyMzU0MzJaMCMGCSqGSIb3DQEJBDEWBBSm
+qoCTJer5qRwJOujezW4gdTxbtDANBgkqhkiG9w0BAQEFAASBgHkqTmkeJcQO5NOi
+assjYWWPCklYR0FBesuppd2R+feHDLSoIPdFfk/6WYls8Nv9VWkE3lNYT8yJ7Tdx
+gwQAmZvXgg3W+2T7U7z7vzAzcbxX2XX8RZ9C0fiGMes9UIftRbja5UDiP3YV055N
+KbTdaIrZZlKwa+AorYNnrccTwMTl
+</as:Timestamp></Object></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

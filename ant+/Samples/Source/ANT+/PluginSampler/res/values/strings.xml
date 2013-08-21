@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This software is subject to the license described in the License.txt file 
+included with this software distribution. You may not use this file except in compliance 
+with this license.
+
+Copyright (c) Dynastream Innovations Inc. 2013
+All rights reserved.
+-->
+<resources>
+
+    <string name="app_name">ANT+ Plugin Sampler</string>
+    <string name="menu_reset">Reset Connection</string>
+
+</resources>

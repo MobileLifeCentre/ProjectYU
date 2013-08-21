@@ -1,0 +1,149 @@
+;*****************************************************************************
+;
+; zusbbus.inf   -- Install the Zephyr USB Composite Device drivers
+;
+; Copyright (c) 1997-2007 by MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+DriverVer=02/22/2007,4.40.1.0
+CatalogFile=zusbbus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir              = 11                    ; LDID_SYS
+SLABWdm.NT.CopyFiles        = 12                    ; system32\drivers
+;PropPages.CopyFiles         = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"slabbus.sys",,\x86
+
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"slabbus.sys",,\x64
+
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+slabbus.sys = 1
+slabwhnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SLAB%=SLAB, NTamd64
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[SLAB]
+%SLAB.CdcBus.Desc% = SLABWdm.Install, USB\VID_10C4&PID_81E8
+
+[SLAB.NTamd64]
+%SLAB.CdcBus.Desc% = SLABWdm.Install, USB\VID_10C4&PID_81E8
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+;[SLAB.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+;[PropPages.CopyFiles]
+
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SLABWdm.Install.NT]
+CopyFiles       = SLABWdm.NT.CopyFiles
+AddReg          = SLABWdm.AddReg, SLABWdm.NT.AddReg
+
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SLABWdm.Install.NT.Services]
+AddService      = slabbus, 2, SLABWdm.AddService
+
+[SLABWdm.AddService]
+DisplayName             = %SLAB.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\slabbus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[SLABWdm.AddReg]
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[SLABWdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[SLABWdm.NT.CopyFiles]
+slabbus.sys
+slabwh.sys,slabwhnt.sys
+slabwhnt.sys
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Zephyr Technology Ltd"
+SLAB = "Zephyr Technology Ltd"
+DiskString = "Zephyr USB Composite Device Installation disk"
+
+SLAB.CdcBus.Desc = "Zephyr USB Composite Device"
+SLAB.Service.Desc = "Zephyr USB Composite Device driver (WDM)"
+
+CustomerDataPath = "Zephyr USB Device"
+DriverSet = "Zephyr USB Device Software"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

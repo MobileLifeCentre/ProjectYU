@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Welcome to Zephyr BioHarness Appworld !</string>
+    <string name="app_name">NewBioHarnessApp</string>
+    <string name="labelHeartRate">000</string>
+    <string name="labelRespRate">000</string>
+    <string name="labelSkinTemp">000</string>
+    <string name="labelPosture">000</string>
+    <string name="labelPeakAcc">000</string>
+    <string name="labelStatusMsg"></string>
+</resources>

@@ -242,7 +242,7 @@ using System;
 		 catch (Exception e)
         {
 			threadErrors++;
-            //Debug.Log("ThreadAbortException"+e);
+            Debug.Log("ThreadAbortException"+e);
         }
         finally
         {

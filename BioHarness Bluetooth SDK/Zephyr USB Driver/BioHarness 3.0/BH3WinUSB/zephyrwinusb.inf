@@ -1,0 +1,104 @@
+; ZephyrWinUSB.inf
+; Copyright (c) 2010 Zephyr Technology
+; --------------------------------------------
+; Zephyr WinUSB Setup File
+; --------------------------------------------
+[Version]
+Signature="$Windows NT$"
+Class=USB
+ClassGuid={36FC9E60-C465-11CF-8056-444553540000}
+Provider=%ProviderName%
+CatalogFile=zephyrWinUSB.cat
+DriverVer=10/20/2010,1.0.1.0
+
+; === Manufacturer/Models section ===
+[Manufacturer]
+%ProviderName%=Zephyr_WinUSB,NTx86,NTamd64
+
+[Zephyr_WinUSB.NTx86]
+%ZephyrUSBDeviceDescription%=DriverInstall, USB\VID_22f3&PID_0003
+
+[Zephyr_WinUSB.NTamd64]
+%ZephyrUSBDeviceDescription%=DriverInstall, USB\VID_22f3&PID_0003
+
+; === Installation ===
+[DriverInstall]
+Include=winusb.inf
+Needs=WinUSB.NT
+
+[DriverInstall.Services]
+Include=winusb.inf
+AddService=WinUSB,0x00000002,ZephyrWinUSB_ServiceInstall
+
+[ZephyrWinUSB_ServiceInstall]
+; ServiceType 1 = SERVICE_KERNEL_DRIVER
+; StartType 3 = SERVICE_DEMAND_START
+; ErrorControl 1 = SERVICE_ERROR_NORMAL
+; 12 dirid = %windir%\Drivers on WinNT platforms
+DisplayName=%ZephyrUSBServiceDesc%
+ServiceType     = 1
+StartType       = 3
+ErrorControl    = 1
+ServiceBinary   = %12%\WinUSB.sys
+
+[DriverInstall.wdf]
+kmdfService=WINUSB, ZephyrWinUSB_Install
+UmdfServiceOrder=WINUSB
+
+[ZephyrWinUSB_Install]
+kmdfLibraryVersion=1.9
+
+[DriverInstall.HW]
+AddReg=Device_AddReg
+
+[Device_AddReg]
+; GUID for device
+HKR,,DeviceInterfaceGUIDs,0x10000,"{68FE3B92-9FD7-4B69-81E5-AFF69A383BB5}"
+; Disable power management
+HKR,,DeviceIdleEnabled,0x00010001,0
+
+[DriverInstall.CoInstallers]
+AddReg=CoInstallers_AddReg
+CopyFiles=CoInstallers_CopyFiles
+
+[CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"WinUSBCoInstaller2.dll","WUDFUpdate_01009.dll","WdfCoInstaller01009.dll,WdfCoInstaller"
+
+
+[CoInstallers_CopyFiles]
+WinUSBCoInstaller2.dll
+wdfCoInstaller01009.dll
+WUDFUpdate_01009.dll
+
+[_CopyFiles_sys]
+winusb.sys
+
+[DestinationDirs]
+; 11 dirid = %windir%\system32 on WinNT platforms
+; 12 dirid = %windir%\Drivers on WinNT platforms
+DefaultDestDir=12 
+CoInstallers_CopyFiles=11
+_CopyFiles_sys=12
+
+; === Source Media section ===
+[SourceDisksNames]
+1=%DISK_NAME%,,,\x86
+2=%DISK_NAME%,,,\amd64
+
+[SourceDisksFiles.x86]
+WinUSBCoInstaller2.dll=1
+wdfCoInstaller01009.dll=1
+WUDFUpdate_01009.dll=1
+
+[SourceDisksFiles.amd64]
+WinUSBCoInstaller2.dll=2
+wdfCoInstaller01009.dll=2
+WUDFUpdate_01009.dll=2
+
+; === String resources ===
+[Strings]
+ClassName="USB"
+ProviderName="Zephyr Technology Corp"
+ZephyrUSBDeviceDescription="Zephyr USB Device"
+ZephyrUSBServiceDesc="Zephyr WinUSB Service"
+DISK_NAME="Install Disk"
