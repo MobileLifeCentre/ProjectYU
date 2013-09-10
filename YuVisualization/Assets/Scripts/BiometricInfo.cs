@@ -24,6 +24,7 @@ public class BiometricInfo : MonoBehaviour {
 	public delegate void BreathingRawListener(int[] breathing);
 	public BreathingRawListener _breathingRawListener = null;
 	
+	
 	// GSR
 	private List<int> _rawGSR = new List<int>();
 	private int _GSRBufferSize = 20;
@@ -33,6 +34,9 @@ public class BiometricInfo : MonoBehaviour {
 	public int _maxGSR = -1;
 	public int _minGSR = 10000; //find int library for maxInt 
 	public float _medianGSR = 0;
+	
+	//IBI
+	public bool beat = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -48,6 +52,9 @@ public class BiometricInfo : MonoBehaviour {
 		_handler.SetAddressHandler("/controller/PEAK_ACCLERATION", PeakAccelerationMessage);
 		_handler.SetAddressHandler("/controller/BREATHING_RAW", BreathingRawMessage);
 		_handler.SetAddressHandler("/GSR", GSRMessage);
+		_handler.SetAddressHandler("/IBI", IBIMessage);
+		_handler.SetAddressHandler("/BPM", BPMMessage);
+		_handler.SetAddressHandler("/Beat", BeatMessage);
 	}
 	
 	public void Update() {
@@ -57,6 +64,10 @@ public class BiometricInfo : MonoBehaviour {
 			_visible = !_visible;
 			plotter.Visible = _visible;
 		}
+	}
+	
+	public void LateUpdate() {
+		beat = false;	
 	}
 	
 	public void OnGUI() {
@@ -103,8 +114,10 @@ public class BiometricInfo : MonoBehaviour {
 		_sumGSR += gsrValue;
 		_countGSR += 1;
 		_medianGSR = _sumGSR/_GSRBufferSize;
-		_maxGSR = (int)Mathf.Max (_maxGSR, gsrValue);
-		_minGSR = (int)Mathf.Min (_minGSR, gsrValue);
+		if (ValidValue(gsrValue)) {
+			_maxGSR = (int)Mathf.Max (_maxGSR, gsrValue);
+			_minGSR = (int)Mathf.Min (_minGSR, gsrValue);
+		}
 		
 		
 		// We delete values outside the window
@@ -115,6 +128,27 @@ public class BiometricInfo : MonoBehaviour {
 			}
 			_rawGSR.RemoveRange(0, extraElements);
 		}
+	}
+	
+	private bool ValidValue(float currentValue) {
+		return _countGSR < 10 || _maxGSR - _minGSR == 0 || Mathf.Abs (currentValue - _medianGSR) < (_maxGSR - _minGSR);
+	}
+	
+	public void IBIMessage(OscMessage oscMessage) {
+		int ibiValue = oscMessageToInt(oscMessage);
+		//Debug.Log (ibiValue);
+		GSRMessage(oscMessage);
+		//Debug.Log (ibiValue);
+	}
+	
+	public void BPMMessage(OscMessage oscMessage) {
+		int bpmValue = oscMessageToInt(oscMessage);
+		//Debug.Log (bpmValue);
+	}
+	
+	public void BeatMessage(OscMessage oscMessage) {
+		Debug.Log ("beatttt");
+		beat = true;
 	}
 	
 	public void BreathingRawMessage(OscMessage oscMessage)

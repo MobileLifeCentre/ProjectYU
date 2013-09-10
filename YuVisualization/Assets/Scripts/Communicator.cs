@@ -9,6 +9,8 @@ public class Communicator : MonoBehaviour {
 	private FishMovement _fish;
 	private float _lastTouch;
 	
+	public bool playForever = false;
+	
     void Start() {
        _timeBetweenTouch = 0.0f;
 	   _fish = GameObject.FindObjectOfType(typeof(FishMovement)) as FishMovement;
@@ -34,15 +36,26 @@ public class Communicator : MonoBehaviour {
 				}
 			} else _lastTouch -= Time.deltaTime;
 		}
+		
+		if (playForever) {
+			if (_fish.Finished) {
+				_fish.PlayPath(paths[Random.Range(0, paths.Length)].ToList(), 3);	
+			}
+		}
+		
+		if (biometrics.beat) {
+			Debug.Log ("beat "+ Time.time);
+			_fish.EmitBubbles();	
+		}
 
 		if (biometrics.heartRate > 50) {
 			_fish.velocity = Mathf.Lerp(0.0f, 20.0f,Mathf.Max (0, biometrics.heartRate - 80.0f)/40.0f);	
 		}
 		
 		if (biometrics._countGSR > 10) {
-			float currentGSR = (biometrics._medianGSR-biometrics._minGSR)*1.5f/(biometrics._maxGSR-biometrics._minGSR);
-			_fish.velocity = Mathf.Lerp(0.0f, 10.0f, currentGSR);
-			Debug.Log(currentGSR + " " + _fish.velocity + " " + biometrics._minGSR+ " " +biometrics._maxGSR+ " " +biometrics._medianGSR);
+			float currentGSR = (biometrics._medianGSR-biometrics._minGSR)/(biometrics._maxGSR-biometrics._minGSR);
+			if (!float.IsNaN(currentGSR)) _fish.velocity = Mathf.Lerp(0.01f, 10.0f, 1 - currentGSR);
+			//Debug.Log(currentGSR + "        " + _fish.velocity + "|" + biometrics._minGSR+ " " +biometrics._maxGSR+ " " + biometrics._medianGSR);
 		}
 	}
 }

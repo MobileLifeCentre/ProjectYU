@@ -189,6 +189,12 @@ public class FishMovement : MonoBehaviour {
 		}
 	}
 	
+	public bool Finished {
+		get {
+			return currentPos == -1;	
+		}
+	}
+	
 	public void PlayPath(List<Vector3> path, float velocity) {
 		this.path = path;
 		this.velocity = velocity;
