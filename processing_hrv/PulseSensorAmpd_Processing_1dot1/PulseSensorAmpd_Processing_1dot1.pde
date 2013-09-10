@@ -32,6 +32,12 @@ int BPMWindowWidth = 180;
 int BPMWindowHeight = 340;
 boolean beat = false;    // set when a heart beat is detected, then cleared when the BPM graph is advanced
 
+// Unity stats
+boolean fake = false;
+int[] speed;
+int[] fakeSpeed;
+
+
 void setup() {
   size(700, 600);  // Stage size
   frameRate(100);  
@@ -50,6 +56,13 @@ void setup() {
     
     // Osc Init
     osc = new OscCommunicator();
+    speed = new int[PulseWindowWidth];
+    fakeSpeed = new int[PulseWindowWidth];
+    
+    for (int i=0; i<speed.length; i++){
+      speed[i] = 555;
+      fakeSpeed[i] = 555;   
+    }
     
 // set the visualizer lines to 0
  for (int i=0; i<rate.length; i++){
@@ -66,6 +79,8 @@ void setup() {
   port.clear();            // flush buffer
   port.bufferUntil('\n');  // set buffer full flag on receipt of carriage return
 }
+
+
   
 void draw() {
   background(0);
@@ -116,7 +131,11 @@ void draw() {
  endShape();
  
 // DRAW THE HEART AND MAYBE MAKE IT BEAT
-  fill(250,0,0);
+  if (fake) {
+    fill(0,250,0);
+  } else {
+    fill(250,0,0);
+  }
   stroke(250,0,0);
   // the 'heart' variable is set in serialEvent when arduino sees a beat happen
   heart--;                    // heart is used to time how long the heart graphic swells when your heart beats
@@ -128,7 +147,28 @@ void draw() {
   bezier(width-100,50, width-20,-20, width,140, width-100,150);
   bezier(width-100,50, width-190,-20, width-200,140, width-100,150);
   strokeWeight(1);          // reset the strokeWeight for next time
-
+  
+  
+  // DRAW the UNITY SPEED
+   stroke(0,250,0);                          // color of heart rate graph
+   strokeWeight(2);                          // thicker line is easier to read
+   noFill();
+   beginShape();
+   for (int i = 0; i < fakeSpeed.length-1; i++) {      // move the pulse waveform by
+     fakeSpeed[i] = fakeSpeed[i+1];     
+     vertex(i+10, fakeSpeed[i]);                       // shifting all raw datapoints one pixel left
+   }
+   endShape();
+   
+   stroke(0,0,250);                          // color of heart rate graph
+   strokeWeight(2);                          // thicker line is easier to read
+   noFill();
+   beginShape();
+   for (int i = 0; i < speed.length-1; i++) {      // move the pulse waveform by
+     speed[i] = speed[i+1];     
+     vertex(i+10, speed[i]);                       // shifting all raw datapoints one pixel left
+   }
+   endShape();
 
 // PRINT THE DATA AND VARIABLE VALUES
   fill(eggshell);                                       // get ready to print text
@@ -139,13 +179,14 @@ void draw() {
   
   
   
+  
+  
 //  DO THE SCROLLBAR THINGS
   scaleBar.update (mouseX, mouseY);
   scaleBar.display();
   
 //   
-  osc.Send("IBI", IBI);
-  osc.Send("BPM", BPM);
+  
 }  //end of draw loop
 
 

@@ -10,6 +10,9 @@ public class Communicator : MonoBehaviour {
 	private float _lastTouch;
 	
 	public bool playForever = false;
+	// Fake data
+	private bool _fakeData = false;
+	private float _fakeSpeed = 0.5f;
 	
     void Start() {
        _timeBetweenTouch = 0.0f;
@@ -18,6 +21,20 @@ public class Communicator : MonoBehaviour {
     }
 	
 	void Update () {
+		
+		if (Input.GetKeyDown(KeyCode.KeypadEnter)) {
+			_fakeData = !_fakeData;	
+		}
+		float extraSpeed = 0.0f;
+		if (Input.GetKeyDown(KeyCode.KeypadPlus)) {
+			extraSpeed = 0.1f;
+		}
+		if (Input.GetKeyUp(KeyCode.KeypadMinus)) {
+			extraSpeed = -0.1f;
+		}
+		
+		_fakeSpeed = Mathf.Clamp01(_fakeSpeed + extraSpeed);
+		
 		// Example of how to set path to replay
 		if (_fish.replayPaths) {
 			if (_lastTouch < 0) {
@@ -37,24 +54,36 @@ public class Communicator : MonoBehaviour {
 			} else _lastTouch -= Time.deltaTime;
 		}
 		
+		
 		if (playForever) {
 			if (_fish.Finished) {
 				_fish.PlayPath(paths[Random.Range(0, paths.Length)].ToList(), 3);	
 			}
 		}
 		
+		// We emit bubles if heartbeat detected 
 		if (biometrics.beat) {
-			Debug.Log ("beat "+ Time.time);
 			_fish.EmitBubbles();	
 		}
-
+		
+		// Velocity mapped with heartRate example
 		if (biometrics.heartRate > 50) {
 			_fish.velocity = Mathf.Lerp(0.0f, 20.0f,Mathf.Max (0, biometrics.heartRate - 80.0f)/40.0f);	
 		}
 		
+		// GSR mapping
 		if (biometrics._countGSR > 10) {
-			float currentGSR = (biometrics._medianGSR-biometrics._minGSR)/(biometrics._maxGSR-biometrics._minGSR);
-			if (!float.IsNaN(currentGSR)) _fish.velocity = Mathf.Lerp(0.01f, 10.0f, 1 - currentGSR);
+			float currentGSR = (_fakeData? _fakeSpeed : biometrics.NormalizedGSR);
+			
+			
+			// Send data back to processing
+			biometrics.Send("fake", _fakeData + "");
+			biometrics.Send("fakespeed", _fakeSpeed + "");
+			biometrics.Send("speed", biometrics.NormalizedGSR + "");
+			
+			if (!float.IsNaN(currentGSR)) {
+				_fish.velocity = Mathf.Lerp(0.01f, 10.0f, currentGSR);
+			}
 			//Debug.Log(currentGSR + "        " + _fish.velocity + "|" + biometrics._minGSR+ " " +biometrics._maxGSR+ " " + biometrics._medianGSR);
 		}
 	}

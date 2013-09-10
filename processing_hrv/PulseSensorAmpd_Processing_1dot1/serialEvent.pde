@@ -9,6 +9,7 @@ void serialEvent(Serial port){
    if (inData.charAt(0) == 'S'){          // leading 'S' for sensor data
      inData = inData.substring(1);        // cut off the leading 'S'
      Sensor = int(inData);                // convert the string to usable int
+     
    }
    if (inData.charAt(0) == 'B'){          // leading 'B' for BPM data
      inData = inData.substring(1);        // cut off the leading 'B'
@@ -16,9 +17,11 @@ void serialEvent(Serial port){
      beat = true;                         // set beat flag to advance heart rate graph
      osc.Send("Beat","");
      heart = 20;                          // begin heart image 'swell' timer
+     osc.Send("BPM", BPM);
    }
  if (inData.charAt(0) == 'Q'){            // leading 'Q' means IBI data 
      inData = inData.substring(1);        // cut off the leading 'Q'
      IBI = int(inData);                   // convert the string to usable int
+     osc.Send("IBI", IBI);
    }
 }

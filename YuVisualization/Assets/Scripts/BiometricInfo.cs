@@ -34,6 +34,12 @@ public class BiometricInfo : MonoBehaviour {
 	public int _maxGSR = -1;
 	public int _minGSR = 10000; //find int library for maxInt 
 	public float _medianGSR = 0;
+	public float _differenceSum;
+	public float NormalizedGSR {
+		get {
+			return Mathf.Clamp01(1.0f - (_medianGSR -_minGSR)/(_maxGSR-_minGSR));
+		}
+	}
 	
 	//IBI
 	public bool beat = false;
@@ -110,15 +116,17 @@ public class BiometricInfo : MonoBehaviour {
 	public void GSRMessage(OscMessage oscMessage)
  	{
 		int gsrValue = oscMessageToInt(oscMessage);
+		
  		_rawGSR.Add(gsrValue);
 		_sumGSR += gsrValue;
 		_countGSR += 1;
 		_medianGSR = _sumGSR/_GSRBufferSize;
+		
 		if (ValidValue(gsrValue)) {
 			_maxGSR = (int)Mathf.Max (_maxGSR, gsrValue);
 			_minGSR = (int)Mathf.Min (_minGSR, gsrValue);
+			_differenceSum += Mathf.Pow(gsrValue - _medianGSR, 2);
 		}
-		
 		
 		// We delete values outside the window
 		int extraElements = _rawGSR.Count - _GSRBufferSize;
@@ -128,6 +136,33 @@ public class BiometricInfo : MonoBehaviour {
 			}
 			_rawGSR.RemoveRange(0, extraElements);
 		}
+		//Debug.Log (_differenceSum/_countGSR);
+		ComputeStatistics(gsrValue);
+	}
+	
+	private void ComputeStatistics(float currentValue) {
+		
+		float sum = 0;
+		_maxGSR = -1;
+		_minGSR = 100000;
+		
+		for (var i = 0; i < _rawGSR.Count; ++i) {
+			sum += _rawGSR[i];	
+			_maxGSR = (int)Mathf.Max (_maxGSR, _rawGSR[i]);
+			_minGSR = (int)Mathf.Min (_minGSR, _rawGSR[i]);
+		}
+		float median = sum / _rawGSR.Count;
+		
+		float differenceSum = 0;
+		for (var i = 0; i < _rawGSR.Count; ++i) {
+			differenceSum += Mathf.Pow(_rawGSR[i] - median, 2.0f);	
+		}
+		float stdDev = Mathf.Sqrt(differenceSum/_rawGSR.Count);
+		float currentDev = Mathf.Abs (currentValue-median);
+		
+		_medianGSR = median;
+		
+		Debug.Log ("median: " + median + " StdDev: " + stdDev + " current: " + currentValue + " dev" + (currentDev/stdDev));
 	}
 	
 	private bool ValidValue(float currentValue) {
@@ -135,19 +170,14 @@ public class BiometricInfo : MonoBehaviour {
 	}
 	
 	public void IBIMessage(OscMessage oscMessage) {
-		int ibiValue = oscMessageToInt(oscMessage);
-		//Debug.Log (ibiValue);
 		GSRMessage(oscMessage);
-		//Debug.Log (ibiValue);
 	}
 	
 	public void BPMMessage(OscMessage oscMessage) {
 		int bpmValue = oscMessageToInt(oscMessage);
-		//Debug.Log (bpmValue);
 	}
 	
 	public void BeatMessage(OscMessage oscMessage) {
-		Debug.Log ("beatttt");
 		beat = true;
 	}
 	
@@ -177,5 +207,9 @@ public class BiometricInfo : MonoBehaviour {
 			result[i] = int.Parse(split[i]);
 		}
 		return result;
+	}
+	
+	public void Send(string id, string content) {
+		_handler.Send(Osc.StringToOscMessage("/" + id + " " + content));	
 	}
 }
